@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RTMP Web</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="hls.min.js"></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">CAPTURA LOCAL</p>
+        <h1>RTMP Web</h1>
+        <p class="subtitle">Señal de la DJI Osmo en tu navegador</p>
+      </div>
+      <div id="serviceState" class="state state-loading"><span></span><strong>Comprobando</strong></div>
+    </header>
+
+    <section class="player-card">
+      <div class="video-wrap">
+        <video id="player" controls autoplay muted playsinline></video>
+        <div id="videoMessage" class="video-message">Esperando señal de la Osmo…</div>
+      </div>
+      <div class="player-footer">
+        <div>
+          <strong id="streamTitle">Sin stream</strong>
+          <span id="streamMeta">Configura la Osmo para comenzar</span>
+        </div>
+        <div class="actions">
+          <button id="startButton" class="button primary">Iniciar servidor</button>
+          <button id="stopButton" class="button" disabled>Detener</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <div class="card-heading">
+          <div>
+            <p class="eyebrow">OSMO POCKET 3</p>
+            <h2>Configura la publicación</h2>
+          </div>
+          <span class="pill">H.264 · 1080p60</span>
+        </div>
+        <p class="help">En la cámara usa estos datos. La clave identifica tu stream y no necesitas cambiarla.</p>
+        <label>Servidor RTMP</label>
+        <div class="copy-row"><input id="serverUrl" readonly><button data-copy="serverUrl">Copiar</button></div>
+        <label>Stream key</label>
+        <div class="copy-row"><input id="streamKey" readonly><button data-copy="streamKey">Copiar</button></div>
+        <div class="settings">
+          <span><b>Resolución</b> 1920 × 1080</span>
+          <span><b>FPS</b> 60</span>
+          <span><b>Video</b> H.264</span>
+          <span><b>Audio</b> AAC</span>
+          <span><b>Bitrate</b> 12–16 Mbps</span>
+          <span><b>GOP</b> 1–2 s</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-heading">
+          <div>
+            <p class="eyebrow">OBS / VLC</p>
+            <h2>Recibe la señal</h2>
+          </div>
+          <span class="pill green">Salida local</span>
+        </div>
+        <p class="help">En OBS añade una fuente <b>VLC Video Source</b> y pega esta URL RTMP.</p>
+        <label>URL RTMP de reproducción</label>
+        <div class="copy-row"><input id="playUrl" readonly><button data-copy="playUrl">Copiar</button></div>
+        <label>URL HLS del navegador</label>
+        <div class="copy-row"><input id="hlsUrl" readonly><button data-copy="hlsUrl">Copiar</button></div>
+        <p class="tip">La URL HLS también se puede abrir directamente en VLC.</p>
+      </article>
+    </section>
+
+    <section class="card status-card">
+      <div class="card-heading">
+        <div>
+          <p class="eyebrow">ESTADO</p>
+          <h2>Diagnóstico</h2>
+        </div>
+        <button id="refreshButton" class="button subtle">Actualizar</button>
+      </div>
+      <div class="status-grid">
+        <div><span>Servidor SRS</span><strong id="srsStatus">—</strong></div>
+        <div><span>stream key</span><strong id="keyStatus">—</strong></div>
+        <div><span>IP del equipo</span><strong id="ipStatus">Detectando…</strong></div>
+        <div><span>Último error</span><strong id="errorStatus">—</strong></div>
+      </div>
+    </section>
+
+    <footer>RTMP Web · Funciona en la red local · Sin cuentas ni servicios externos</footer>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

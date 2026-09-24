@@ -1,0 +1,6 @@
+rtmp-web
+rtmp-web.exe
+/data/
+*.log
+*.pid
+.DS_Store
